@@ -2,51 +2,169 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cotton Leaf Disease Detector</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/all.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="\static\css\main.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://use.fontawesome.com/3a2eaf6206.js"></script>
 
     <style>
-        .main_page{
-            border-style:groove;
-            border-width: 5px;
-            border-color: rgb(9, 171, 225);
-            margin: 20px;
+        .camera_div {
+            text-align: center;
+            padding: 3%;
+            border: thin solid rgb(91, 151, 87);
             border-radius: 5px;
+            width: 70%;
+        }
 
+        input {
+            display: none;
+        }
+
+        label {
+            cursor: pointer;
+            color: whitesmoke;
+        }
+
+        #imageName {
+            color: rgb(96, 192, 96);
         }
     </style>
-</head>
-
-<body>
-
-    <div class="main_page">
-        <div class="jumbotron text-center">
-            <h2>Camera App</h2>
-        </div>
-
-        <div class="container camera">
-            <div class="row">
-                <div class="col-sm-5 camera">
-                    <h5>Use camera to capture image or upload from files</h5>
-                    <label for="file-input">Insert Image</label>
-                    <input type="file" accept="image/*" id="file-input" />
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <script>
-        const fileInput = document.getElementById('file-input');
-
-        fileInput.addEventListener('change', (e) =>
-            doSomethingWithFiles(e.target.files),
-        );
+        $(function () {
+            $("#DivContent").load("navbar");
+        });
     </script>
+</head>
+
+<body class="content">
+    <!--Navigation bar-->
+    <div id="DivContent">
+
+    </div>
+    <!--end of Navigation bar-->
+
+    <!-- full Title -->
+    <div class="full-title">
+        <div class="container">
+            <!-- Page Heading/Breadcrumbs -->
+            <h1 class="mt-4 mb-3">Disease Detection
+            </h1>
+        </div>
+    </div>
+    <!-- Page Content -->
+    <div class="container">
+        <div class="breadcrumb-main">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a href="{{ url_for('hello')}}">Home</a>
+                </li>
+                <li class="breadcrumb-item active">Services</li>
+            </ol>
+        </div>
+        <div class="row">
+            <div class="col-lg-8 mb-4 contact-left">
+                <form action="{{ url_for('upload')}}" id="file_upload" method="post" enctype="multipart/form-data"
+                    class="upload">
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <label for="crop" style="color:aliceblue ; font-size: 18px;">Choose a crop:</label>
+
+                            <select name="crop" id="crop" style="background:transparent; color: whitesmoke;">
+                                <option value="cotton" style="background-color:#152a1f; color: whitesmoke;">Cotton
+                                </option>
+                                <option value="potato" style="background-color:#152a1f; color: whitesmoke;">Potato
+                                </option>
+                                <option value="tomato" style="background-color:#152a1f; color: whitesmoke;">Tomato
+                                </option>
+                                <option value="corn" style="background-color:#152a1f; color: whitesmoke;">Corn</option>
+                            </select>
+                        </div>
+                    </div>
+                    <!-- <div class="control-group form-group"> -->
+                    <div class="camera_div">
+                        <label for="inputTag">
+                            Select Image For Detection<br />
+                            <i class="fa fa-2x fa-camera"></i>
+                            <input id="inputTag" type="file" name="file" accept=".png, .jpg, .jpeg"
+                                onchange="PreviewImage();" />
+                            <br />
+                            <span id="imageName"></span>
+                        </label>
+                    </div>
+
+                    <div class="control-group form-group">
+                        <div class="controls">
+                            <div class="img-view">
+                                <img id="uploadPreview" style="width: 256px; height: 256px;  border-radius: 8px;">
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary" id="btn-predict">Predict</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+    \<br><br>
+    <!--footer starts from here-->
+    <footer class="footer">
+
+
+        <div class="container">
+            <div class="footer-logo">
+                <a href="#"><img src="{{ url_for('static', filename = 'images/logo_image.png') }}" alt=""
+                        style="height: 90px; width: 160px;" /></a>
+            </div>
+            <!--foote_bottom_ul_amrc ends here-->
+            <p class="copyright text-center">All Rights Reserved. &copy; 2022 <a href="#">Krishak </a>
+            </p>
+            <ul class="social_footer_ul">
+                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+            </ul>
+            <!--social_footer_ul ends here-->
+        </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script type="text/JavaScript" src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
+    <script type="text/JavaScript"
+        src="{{ url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+
 </body>
+
+<script type="text/javascript">
+    function PreviewImage() {
+        var oFReader = new FileReader();
+        oFReader.readAsDataURL(document.getElementById("inputTag").files[0]);
+
+        oFReader.onload = function (oFREvent) {
+            document.getElementById("uploadPreview").src = oFREvent.target.result;
+        };
+    };
+</script>
+
+<script>
+    let input = document.getElementById("inputTag");
+    let imageName = document.getElementById("imageName")
+
+    input.addEventListener("change", () => {
+        let inputImage = document.querySelector("input[type=file]").files[0];
+
+        imageName.innerText = inputImage.name;
+    })
+</script>
 
 </html>
