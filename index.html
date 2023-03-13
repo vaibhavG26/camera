@@ -30,7 +30,7 @@
 
         label {
             cursor: pointer;
-            color: whitesmoke;
+            color: rgb(45, 128, 196);
         }
 
         #imageName {
@@ -46,46 +46,25 @@
 </head>
 
 <body class="content">
-    <!--Navigation bar-->
-    <div id="DivContent">
 
-    </div>
-    <!--end of Navigation bar-->
-
-    <!-- full Title -->
-    <div class="full-title">
-        <div class="container">
-            <!-- Page Heading/Breadcrumbs -->
-            <h1 class="mt-4 mb-3">Disease Detection
-            </h1>
-        </div>
-    </div>
-    <!-- Page Content -->
     <div class="container">
-        <div class="breadcrumb-main">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                    <a href="{{ url_for('hello')}}">Home</a>
-                </li>
-                <li class="breadcrumb-item active">Services</li>
-            </ol>
-        </div>
+
         <div class="row">
             <div class="col-lg-8 mb-4 contact-left">
                 <form action="{{ url_for('upload')}}" id="file_upload" method="post" enctype="multipart/form-data"
                     class="upload">
                     <div class="control-group form-group">
                         <div class="controls">
-                            <label for="crop" style="color:aliceblue ; font-size: 18px;">Choose a crop:</label>
+                            <label for="crop" style="color:rgb(20, 113, 195) ; font-size: 18px;">Choose a crop:</label>
 
-                            <select name="crop" id="crop" style="background:transparent; color: whitesmoke;">
-                                <option value="cotton" style="background-color:#152a1f; color: whitesmoke;">Cotton
+                            <select name="crop" id="crop" style="background:transparent; color: rgb(24, 23, 23);">
+                                <option value="cotton" style="background-color:#ecf3ef; color: rgb(3, 3, 3);">Cotton
                                 </option>
-                                <option value="potato" style="background-color:#152a1f; color: whitesmoke;">Potato
+                                <option value="potato" style="background-color:#ecf3ef; color: rgb(3, 3, 3);">Potato
                                 </option>
-                                <option value="tomato" style="background-color:#152a1f; color: whitesmoke;">Tomato
+                                <option value="tomato" style="background-color:#ecf3ef; color: rgb(3, 3, 3);">Tomato
                                 </option>
-                                <option value="corn" style="background-color:#152a1f; color: whitesmoke;">Corn</option>
+                                <option value="corn" style="background-color:#ecf3ef; color: rgb(3, 3, 3);">Corn</option>
                             </select>
                         </div>
                     </div>
@@ -117,26 +96,7 @@
     </div>
     \<br><br>
     <!--footer starts from here-->
-    <footer class="footer">
 
-
-        <div class="container">
-            <div class="footer-logo">
-                <a href="#"><img src="{{ url_for('static', filename = 'images/logo_image.png') }}" alt=""
-                        style="height: 90px; width: 160px;" /></a>
-            </div>
-            <!--foote_bottom_ul_amrc ends here-->
-            <p class="copyright text-center">All Rights Reserved. &copy; 2022 <a href="#">Krishak </a>
-            </p>
-            <ul class="social_footer_ul">
-                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
-                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
-            </ul>
-            <!--social_footer_ul ends here-->
-        </div>
-    </footer>
 
     <!-- Bootstrap core JavaScript -->
     <script type="text/JavaScript" src="{{ url_for('static', filename='vendor/jquery/jquery.min.js') }}"></script>
